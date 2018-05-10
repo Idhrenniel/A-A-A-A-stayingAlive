@@ -1,30 +1,37 @@
 import random
+import sys
 
 def main():
-	la1 = []
-	la2 = list(range(0,5000))
-	for x in range(0, 1000):
-		aux = random.randrange(0, len(la2))
-		la1 += [la2[aux]]
-		la2.pop(aux)
-	la3 = la1[0:300]
+	if len(sys.argv) == 3:
+		sizeTotal = int(sys.argv[1])
+		sizeFind  = int(sys.argv[2])
+		la1 = []
+		la2 = list(range(0,sizeTotal))
+		for x in range(0, sizeFind):
+			aux = random.randrange(0, len(la2))
+			la1 += [la2[aux]]
+			la2.pop(aux)
+		ters = int(sizeFind/3)
+		la3 = la1[0:ters]
 
 
-	for x in range(0, 1700):
-		aux = random.randrange(0, len(la2))
-		la3+= [la2[aux]]
-		la2.pop(aux)
+		for x in range(0, (sizeFind*2)-ters):
+			aux = random.randrange(0, len(la2))
+			la3+= [la2[aux]]
+			la2.pop(aux)
 
-	la1.sort()
+		la1.sort()
 
-	f = open("arxiu1.txt", "w+")
-	for item in la1:
-		f.write("%d " % item)
-	f.close()
-	f = open("arxiu2.txt", "w+")
-	for item in la3:
-		f.write("%d " % item)
-	f.close()
+		f = open("arxiu1.txt", "w+")
+		for item in la1:
+			f.write("%d\n" % item)
+		f.close()
+		f = open("arxiu2.txt", "w+")
+		for item in la3:
+			f.write("%d\n" % item)
+		f.close()
+	else:
+		print('Usage:\nSon dos enteros, numero maximo del set, y numero de enteros a buscar')
 
 
 if __name__ == "__main__":
