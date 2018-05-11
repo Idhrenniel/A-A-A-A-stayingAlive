@@ -45,7 +45,14 @@ bool bloomFilter::findElement(int elem){
 }
 
 void bloomFilter::output(){
+	int count = this->bf[0];
 	cout << this->bf[0];
-	for(int i=1; i<this->size; ++i) cout << " " << this->bf[i];
+	for(int i=1; i<this->size; ++i){
+		cout << " " << this->bf[i];
+		if(this->bf[i]) ++count;
+	}
 	cout << endl;
+
+	cout << endl << endl << "Number of Ones:   " << count << endl;
+	
 }
