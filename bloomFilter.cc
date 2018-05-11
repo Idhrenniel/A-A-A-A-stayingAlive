@@ -21,12 +21,12 @@ vector<int> takePrimes(int nHashes, int size){
 
 bloomFilter::bloomFilter(int size, int nHashes){
 	this->size = size; this->nHashes = nHashes;
-	bf = vector<bool>(size, false);
+	this->bf = vector<bool>(size, false);
 	primes = takePrimes(nHashes, size);
 }
 
 int parsingHashFunction(int elem, int prime, int size){
-	return ((elem*elem) % prime) % size;
+	return ((((elem*elem)+1) % prime) % size);
 }
 
 void bloomFilter::addElement(int elem){

@@ -1,9 +1,6 @@
 makefile: all
 
-all: arx prog clean
-
-arx: randomDictionaryCreator.py
-	python3 randomDictionaryCreator.py 5000 1000
+all: prog clean
 
 prog: main.o bloomFilter.o
 	g++ -std=c++11 -o prog main.o bloomFilter.o
