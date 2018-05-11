@@ -1,3 +1,4 @@
+#include "binarySearch.hh"
 #include "bloomFilter.hh"
 #include <iostream>
 #include <fstream>
@@ -14,20 +15,27 @@ int main(){
 	system(&spy[0u]);
 
 
-	bloomFilter bf = bloomFilter(nElemDic*10, nHashes);
+	bloomFilter  bf = bloomFilter(nElemDic*10, nHashes);
+	binarySearch bs = binarySearch(nElemDic);
+
+	//ADDING ELEMENTS
 
 	ifstream arx1, arx2;
 	arx1.open("arxiu1.txt");
 	if(arx1.is_open()){
-		string lineOfArxiu;
+		string lineOfArxiu; int index = 0;
 		getline(arx1, lineOfArxiu);
 		while(lineOfArxiu != "endfile"){
 			bf.addElement(stoi(lineOfArxiu));
+			bs.addElement(stoi(lineOfArxiu), index);
 			getline(arx1, lineOfArxiu);
+			++index;
 		}
 	}
 	arx1.close();
-	cout << "holi" << endl;
+	
+	//BLOOMFILTER
+	/*
 	arx2.open("arxiu2.txt");
 	if(arx2.is_open()){
 		string lineOfArxiu;
@@ -39,6 +47,14 @@ int main(){
 		}
 	}
 	arx2.close();
-	cout << "holi2" << endl;
 	//bf.output();
+	*/
+	//BINARY SEARCH
+	bs.output();
+	int elem;
+	while(true){
+		cin >> elem;
+		if(bs.findElement(elem)) cout << "it is" << endl;
+		else cout << "it is not" << endl;
+	}
 }
