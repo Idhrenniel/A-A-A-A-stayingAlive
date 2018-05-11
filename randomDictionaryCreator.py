@@ -21,14 +21,17 @@ def main():
 			la2.pop(aux)
 
 		la1.sort()
-
+		#los que se añadiran
 		f = open("arxiu1.txt", "w+")
 		for item in la1:
 			f.write("%d\n" % item)
+		f.write("endfile")
 		f.close()
+		#los que se buscaran
 		f = open("arxiu2.txt", "w+")
 		for item in la3:
 			f.write("%d\n" % item)
+		f.write("endfile")
 		f.close()
 	else:
 		print('Usage:\nSon dos enteros, numero maximo del set, y numero de enteros a buscar')
