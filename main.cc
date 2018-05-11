@@ -50,11 +50,22 @@ int main(){
 	//bf.output();
 	*/
 	//BINARY SEARCH
-	bs.output();
-	int elem;
+	//bs.output();
+	/*int elem;
 	while(true){
 		cin >> elem;
 		if(bs.findElement(elem)) cout << "it is" << endl;
 		else cout << "it is not" << endl;
+	}*/
+	arx2.open("arxiu2.txt");
+	if(arx2.is_open()){
+		string lineOfArxiu;
+		getline(arx2, lineOfArxiu);
+		while(lineOfArxiu != "endfile"){
+			if(bs.findElement(stoi(lineOfArxiu))) cout << stoi(lineOfArxiu) << " it is in the dictionary" << endl;
+			else cout << stoi(lineOfArxiu) << " is not in the dictionary" << endl;
+			getline(arx2, lineOfArxiu);
+		}
 	}
+	arx2.close();
 }
