@@ -9,5 +9,7 @@ int main(){
 	cout << "numeroElementosDiccionario   nhashes  //  1000 " << endl;
 	int nElemDic, nHashes; cin >> nElemDic >> nHashes;
 	//system("python3 randomDictionaryCreator.py 5000 1000");
-	system("python3 randomDictionaryCreator.py "+nElemDic);
+	string spy = "python3 randomDictionaryCreator.py "+to_string(nElemDic*5)+" "+to_string(nElemDic);
+	//cout << spy << endl;
+	system(&spy[0u]);
 }
