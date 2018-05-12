@@ -28,6 +28,7 @@ def main():
 		f.write("endfile")
 		f.close()
 		#los que se buscaran
+		la3 = random.sample(la3, len(la3))
 		f = open("arxiu2.txt", "w+")
 		for item in la3:
 			f.write("%d\n" % item)
