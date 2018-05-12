@@ -1,17 +1,26 @@
 #ifndef _HASHTABLE_HH
 #define _HASHTABLE_HH
 
-class hashTable {
-	private:
-		int size;
-		vector<int> table;
+#include <iostream>
+#include <math.h>
+#include <vector>
+#include <utility>
 
-	public:
-		hashTable(size);
-		
-		void addElement(int elem);
-		bool findElement(int elem);
-		void output();
+
+
+class hashTable {
+    private:
+        int size;
+        std::vector< std::pair <double,int>> table;
+        
+    public:
+        hashTable(int size);
+        
+        void addElement(int key, int elem);
+        int findElement(int key);
+        int formkey (int elem);
+        void out();
 };
 
 #endif
+    
