@@ -29,11 +29,15 @@ int parsingHashFunction(int elem, int prime, int size){
 	return ((((elem*elem)+1) % prime) % size);
 }
 
-void bloomFilter::addElement(int elem){
+clock_t bloomFilter::addElement(int elem){
+    clock_t t;
+    t = clock();
 	for(int i=0; i<this->nHashes; ++i){
 		int indexBloomFilter = parsingHashFunction(elem, primes[i], this->size);
 		this->bf[indexBloomFilter] = true;
 	}
+    t = clock() - t;
+    return t;
 }
 
 bool bloomFilter::findElement(int elem){

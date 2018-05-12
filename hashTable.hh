@@ -6,6 +6,7 @@
 #include <vector>
 #include <utility>
 #include <cmath>
+#include <ctime>
 
 
 
@@ -17,7 +18,7 @@ class hashTable {
     public:
         hashTable(int size);
 
-        void addElement(int key, int elem);
+        clock_t addElement(int key, int elem);
         int findElement(int key);
         int formkey (int elem);
         void out();

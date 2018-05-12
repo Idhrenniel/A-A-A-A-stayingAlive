@@ -19,13 +19,17 @@ int hashTable::formkey (int elem){
     return floor(size*fractir);
 }
 
-void hashTable::addElement(int key, int elem){
+clock_t hashTable::addElement(int key, int elem){
+    clock_t t;
+    t = clock();
     int hash = key%size;
     while(table[hash].first != -1 && table[hash].first != key){
             hash = (hash+1) % size;
     }
     table[hash].first = key;
     table[hash].second = elem;
+    t = clock() - t;
+    return t;
 }
 
 int hashTable::findElement(int key){

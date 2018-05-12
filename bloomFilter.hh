@@ -5,6 +5,7 @@
 #include <math.h>
 #include <vector>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class bloomFilter {
 	public:
 		bloomFilter(int size, int nHashes);
 
-		void addElement(int elem);
+                clock_t addElement(int elem);
 		bool findElement(int elem);
 		void output();
 };
