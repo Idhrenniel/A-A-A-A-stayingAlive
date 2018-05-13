@@ -18,13 +18,13 @@ int takePrimev2(int size){
 hashttv2::hashttv2(int size){
     this->size = size;
     std::pair <long,int> aux(-1,-1);
-    std::cout << "creamos table 1 " << std::endl;
+
     this->table = std::vector <std::pair <long,int>>(size,aux);
-    std::cout << "creamos table 2 " << std::endl;
+
     this->table2 = table;
-    std::cout << "primos " << std::endl;
+
     this->prime = takePrimev2(size);
-    std::cout << "hecho " << std::endl;
+
 
 }
 
@@ -46,10 +46,10 @@ long hashttv2::formkey2(int elem){
 clock_t hashttv2::addElement(long key,long key2, int elem){
     clock_t t;
     t = clock();
-    int hash = key%size;
+    int hash = formkey(key)%size;
     int hash2 = 0;
     if(table[hash].first != -1){
-            hash2 = key2%size;
+            hash2 = formkey2(key2)%size;
             while(table2[hash2].first != -1){
 
                 hash2 = (hash2+1)%size;
@@ -66,8 +66,8 @@ clock_t hashttv2::addElement(long key,long key2, int elem){
 }
 
 int hashttv2::findElement(long key,long key2){
-    int hash = key%size;
-    int hash2 = key2%size;
+    int hash = formkey(key)%size;
+    int hash2 = formkey2(key2)%size;
 
         if(table[hash].first != -1 && table[hash].first == key){
                 return table[hash].second;

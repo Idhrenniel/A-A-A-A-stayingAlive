@@ -22,7 +22,7 @@ long hashTable::formkey (int elem){
 clock_t hashTable::addElement(long key, int elem){
     clock_t t;
     t = clock();
-    int hash = key%size;
+    int hash = formkey(key)%size;
     while(table[hash].first != -1 && table[hash].first != key){
             hash = (hash+1) % size;
     }
@@ -35,7 +35,7 @@ clock_t hashTable::addElement(long key, int elem){
 }
 
 int hashTable::findElement(int key){
-    int hash = key%size;
+    int hash = formkey(key)%size;
     for(int x=0;x<table.size();x++){
         if(table[hash].first != -1 && table[hash].first == key){
                 return table[hash].second;

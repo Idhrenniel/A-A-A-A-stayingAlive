@@ -17,20 +17,12 @@ int takePrime(int size){
 
 
 hashTableTable::hashTableTable(int size){
-    std::cout << "vamos alla" << std::endl;
     this->size = size;
-    std::cout << "metimos size" << std::endl;
     std::pair <long,int> aux(-1,-1);
-    std::cout << "creamos aux" << std::endl;
     pair aux1(-1,aux);
-    std::cout << "creamos aux1" << std::endl;
     std::vector<pair> aux2(size,aux1);
-    std::cout << "creamos aux2" << std::endl;
     this->table = std::vector <std::vector<pair>>(size,aux2);
-    std::cout << "metimos tablero" << std::endl;
     prime = takePrime(size);
-    std::cout << "prime" << std::endl;
-
 }
 
 long hashTableTable::formkey (int elem){
@@ -51,10 +43,10 @@ long hashTableTable::formkey2(int elem){
 clock_t hashTableTable::addElement(long key,long key2, int elem){
     clock_t t;
     t = clock();
-    int hash = key%size;
+    int hash = formkey(key)%size;
     int hash2 = 0;
     if(table[hash][hash2].first != -1){
-            hash2 = key2%size;
+            hash2 = formkey2(key2)%size;
             while(table[hash][hash2].first != -1){
                 hash2 = (hash2+1)%size;
             }
@@ -69,8 +61,8 @@ clock_t hashTableTable::addElement(long key,long key2, int elem){
 }
 
 int hashTableTable::findElement(long key,long key2){
-    int hash = key%size;
-    int hash2 = key2%size;
+    int hash = formkey(key)%size;
+    int hash2 = formkey2(key2)%size;
     for(int x=0;x<table[0].size();x++){
         if(table[hash][hash2].first != -1 && table[hash][hash2].first == key){
                 return table[hash][hash2].second.second;

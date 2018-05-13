@@ -38,11 +38,11 @@ int main(){
 		while(lineOfArxiu != "endfile"){
                         /*tbf +=bf.addElement(stoi(lineOfArxiu));
                         tbs +=bs.addElement(stoi(lineOfArxiu), index);
-                        tht += ht.addElement(ht.formkey(stod(lineOfArxiu)),stoi(lineOfArxiu));
+                        tht += ht.addElement(stod(lineOfArxiu),stoi(lineOfArxiu));
 
-                        thtt += htt.addElement(htt.formkey(stod(lineOfArxiu)),htt.formkey2(stod(lineOfArxiu)),stod(lineOfArxiu));*/
+                        thtt += htt.addElement(stod(lineOfArxiu),stod(lineOfArxiu),stod(lineOfArxiu));*/
 
-                    thttv2 += httv2.addElement(httv2.formkey(stod(lineOfArxiu)),httv2.formkey2(stod(lineOfArxiu)),stod(lineOfArxiu));
+                    thttv2 += httv2.addElement(stod(lineOfArxiu),stod(lineOfArxiu),stod(lineOfArxiu));
 
 
 			getline(arx1, lineOfArxiu);
@@ -99,7 +99,7 @@ int main(){
 		while(lineOfArxiu != "endfile"){
                         clock_t tpuntual;
                         tpuntual = clock();
-                        if(ht.findElement(ht.formkey(stoi(lineOfArxiu))) == elem) cout << "ht: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
+                        if(ht.findElement(stoi(lineOfArxiu)) == elem) cout << "ht: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
                         else cout << "ht: "<< stoi(lineOfArxiu) << " is not in the dictionary" << endl;
 			getline(arx2, lineOfArxiu);
                         tpuntual = clock() - tpuntual;
@@ -118,7 +118,7 @@ int main(){
                 while(lineOfArxiu != "endfile"){
                         clock_t tpuntual;
                         tpuntual = clock();
-                        if(htt.findElement(htt.formkey(stod(lineOfArxiu)),htt.formkey2(stod(lineOfArxiu))) == stod(lineOfArxiu))  cout << "htt: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
+                        if(htt.findElement(stod(lineOfArxiu),stod(lineOfArxiu)) == stod(lineOfArxiu))  cout << "htt: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
                         else cout << "htt: "<< stoi(lineOfArxiu) << " is not in the dictionary" << endl;
                         getline(arx2, lineOfArxiu);
                         tpuntual = clock() - tpuntual;
@@ -139,7 +139,7 @@ int main(){
                 while(lineOfArxiu != "endfile"){
                         clock_t tpuntual;
                         tpuntual = clock();
-                        if(httv2.findElement(httv2.formkey(stod(lineOfArxiu)),httv2.formkey2(stod(lineOfArxiu))) == stod(lineOfArxiu))  cout << "httv2: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
+                        if(httv2.findElement(stod(lineOfArxiu),stod(lineOfArxiu)) == stod(lineOfArxiu))  cout << "httv2: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
                         else cout << "httv2: "<< stoi(lineOfArxiu) << " is not in the dictionary" << endl;
                         getline(arx2, lineOfArxiu);
                         tpuntual = clock() - tpuntual;
@@ -170,5 +170,3 @@ int main(){
 	}
         arx2.close();*/
 }
-
-
