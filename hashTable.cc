@@ -4,22 +4,22 @@
 
 hashTable::hashTable(int size){
     this->size = size;
-    std::pair <double,int> aux(-1,-1);
-    this->table = std::vector< std::pair <double,int>>(size,aux);
+    std::pair <long,int> aux(-1,-1);
+    this->table = std::vector< std::pair <long,int>>(size,aux);
 
 }
 
-int hashTable::formkey (int elem){
+long hashTable::formkey (int elem){
     double n, ir = 1+pow(5,0.5)/2;
     ir = ir*elem;
     double fractir = std::modf(ir,&n);
-    for(int i=0;i<5;i++){
+    for(int i=0;i<8;i++){
       fractir*=10;
     }
-    return floor(size*fractir);
+    return int(fractir);
 }
 
-clock_t hashTable::addElement(int key, int elem){
+clock_t hashTable::addElement(long key, int elem){
     clock_t t;
     t = clock();
     int hash = key%size;
@@ -28,6 +28,8 @@ clock_t hashTable::addElement(int key, int elem){
     }
     table[hash].first = key;
     table[hash].second = elem;
+
+
     t = clock() - t;
     return t;
 }

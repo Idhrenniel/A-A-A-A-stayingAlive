@@ -13,14 +13,14 @@
 class hashTable {
     private:
         int size;
-        std::vector< std::pair <double,int>> table;
+        std::vector< std::pair <long,int>> table;
 
     public:
         hashTable(int size);
 
-        clock_t addElement(int key, int elem);
+        clock_t addElement(long key, int elem);
         int findElement(int key);
-        int formkey (int elem);
+        long formkey(int elem);
         void out();
 };
 
