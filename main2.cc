@@ -68,7 +68,7 @@ void addingElementshtt(hashTableTable* htt){
                         getline(arx1, lineOfArxiu);
                         ++index;
                 }
-                resAdd << "la media de ht de añadir es " << thtt/nElemDic << " clicks y "<< (((float)thtt)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de htt de añadir es " << thtt/nElemDic << " clicks y "<< (((float)thtt)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
         }
         arx1.close();
         resAdd.close();
@@ -215,5 +215,3 @@ int main(){
         findHTTV2(&httv2);
         findBS(&bs);
 }
-
-
