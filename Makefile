@@ -2,11 +2,11 @@ makefile: all
 
 all: prog clean
 
-prog: main.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
-	g++ -std=c++11 -o prog main.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
+prog: main2.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
+	g++ -std=c++11 -o prog main2.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
 
-main.o: main.cc
-	g++ -std=c++11 -c main.cc
+main.o: main2.cc
+	g++ -std=c++11 -c main2.cc
 
 bloomFilter.o: bloomFilter.cc
 	g++ -std=c++11 -c bloomFilter.cc

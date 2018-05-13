@@ -1,6 +1,8 @@
 #include "binarySearch.hh"
 #include "bloomFilter.hh"
 #include "hashTable.hh"
+#include "hashTableTable.hh"
+#include "hashttv2.hh"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,13 +11,15 @@ using namespace std;
 
 int nElemDic;
 int nHashes;
-clock_t t = 0;
-clock_t tb = 0;
+clock_t tht = 0;
+clock_t tbf = 0;
+clock_t thtt = 0;
+clock_t thttv2 = 0;
 clock_t ttotal;
 
 ifstream arx1, arx2;
 ofstream resAdd;
-ofstream resBF, resBS, resHT;
+ofstream resBF, resBS, resHT, resHTT, resHTTV2;
 
 
 void init(){
@@ -27,7 +31,7 @@ void init(){
 	system(&spy[0u]);
 }
 
-void addingElements(bloomFilter* bf, binarySearch* bs, hashTable* hs){
+void addingElements(bloomFilter* bf, binarySearch* bs, hashTable* hs,hashttv2* httv2){
 	//ADDING ELEMENTS
 	resAdd.open("./results/resultsOfAddingElements.txt");
 	arx1.open("arxiu1.txt");
@@ -35,18 +39,39 @@ void addingElements(bloomFilter* bf, binarySearch* bs, hashTable* hs){
 		string lineOfArxiu; int index = 0;
 		getline(arx1, lineOfArxiu);
 		while(lineOfArxiu != "endfile"){
-                        tb +=bf->addElement(stoi(lineOfArxiu));
+                        tbf +=bf->addElement(stoi(lineOfArxiu));
                         bs->addElement(stoi(lineOfArxiu), index);
-                        t += hs->addElement(hs->formkey(stod(lineOfArxiu)),stoi(lineOfArxiu));
+                        tht += hs->addElement(stod(lineOfArxiu),stoi(lineOfArxiu));
+                        thtt += httv2->addElement(stod(lineOfArxiu),stoi(lineOfArxiu),stoi(lineOfArxiu));
 			getline(arx1, lineOfArxiu);
 			++index;
 		}
-                resAdd << "la media de hs de añadir es " << t/nElemDic << " clicks y "<< (((float)t)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de ht de añadir es " << tht/nElemDic << " clicks y "<< (((float)tht)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
 
-                resAdd << "la media de bf de añadir es " << tb/nElemDic << " clicks y "<< (((float)tb)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de httv2 de añadir es " << thttv2/nElemDic << " clicks y "<< (((float)thttv2)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+
+                resAdd << "la media de bf de añadir es " << tbf/nElemDic << " clicks y "<< (((float)tbf)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
 	}
 	arx1.close();
 	resAdd.close();
+}
+
+void addingElementshtt(hashTableTable* htt){
+        //ADDING ELEMENTS
+        resAdd.open("./results/resultsOfAddingElements.txt");
+        arx1.open("arxiu1.txt");
+        if(arx1.is_open()){
+                string lineOfArxiu; int index = 0;
+                getline(arx1, lineOfArxiu);
+                while(lineOfArxiu != "endfile"){
+                        thtt += htt->addElement(stod(lineOfArxiu),stod(lineOfArxiu),stoi(lineOfArxiu));
+                        getline(arx1, lineOfArxiu);
+                        ++index;
+                }
+                resAdd << "la media de ht de añadir es " << thtt/nElemDic << " clicks y "<< (((float)thtt)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+        }
+        arx1.close();
+        resAdd.close();
 }
 
 void findBF(bloomFilter* bf){
@@ -64,8 +89,8 @@ void findBF(bloomFilter* bf){
                         if(bf->findElement(stoi(lineOfArxiu))) resBF << "bf: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
                         else resBF << "bf: " << stoi(lineOfArxiu) << " is not in the dictionary" << endl;
 			getline(arx2, lineOfArxiu);
-                        tpuntual = clock() - t;
-                        ttotal += t;
+                        tpuntual = clock() - tpuntual;
+                        ttotal += tpuntual;
 		}
         resBF << "la media de bf de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
 	}
@@ -86,7 +111,7 @@ void findHT(hashTable* hs){
 		while(lineOfArxiu != "endfile"){
                         clock_t tpuntual;
                         tpuntual = clock();
-                        if(hs->findElement(hs->formkey(stoi(lineOfArxiu))) != -1) resHT << "ht: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
+                        if(hs->findElement(stoi(lineOfArxiu)) == stoi(lineOfArxiu)) resHT << "ht: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
                         else resHT << "ht: "<< stoi(lineOfArxiu) << " is not in the dictionary" << endl;
 			getline(arx2, lineOfArxiu);
                         tpuntual = clock() - tpuntual;
@@ -97,6 +122,54 @@ void findHT(hashTable* hs){
     arx2.close();
     resHT << endl;
     resHT.close();
+}
+
+void findHTTV2(hashttv2* httv2){
+        //HASHTABLE
+    ttotal = 0;
+    resHTTV2.open("./results/resultsHTTV2.txt");
+    arx2.open("arxiu2.txt");
+        if(arx2.is_open()){
+                string lineOfArxiu;
+                getline(arx2, lineOfArxiu);
+                while(lineOfArxiu != "endfile"){
+                        clock_t tpuntual;
+                        tpuntual = clock();
+                        if(httv2->findElement(stoi(lineOfArxiu),stoi(lineOfArxiu)) == stoi(lineOfArxiu)) resHTTV2 << "httv2: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
+                        else resHTTV2 << "httv2: "<< stoi(lineOfArxiu) << " is not in the dictionary" << endl;
+                        getline(arx2, lineOfArxiu);
+                        tpuntual = clock() - tpuntual;
+                        ttotal += tpuntual;
+                }
+                resHTTV2 << "la media de httv2 de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+        }
+    arx2.close();
+    resHTTV2 << endl;
+    resHTTV2.close();
+}
+
+void findHTT(hashTableTable* htt){
+        //HASHTABLE
+    ttotal = 0;
+    resHTT.open("./results/resultsHTT.txt");
+    arx2.open("arxiu2.txt");
+        if(arx2.is_open()){
+                string lineOfArxiu;
+                getline(arx2, lineOfArxiu);
+                while(lineOfArxiu != "endfile"){
+                        clock_t tpuntual;
+                        tpuntual = clock();
+                        if(htt->findElement(stoi(lineOfArxiu),stoi(lineOfArxiu)) == stoi(lineOfArxiu)) resHTT << "htt: "<< stoi(lineOfArxiu) << " can be in the dictionary" << endl;
+                        else resHTT << "htt: "<< stoi(lineOfArxiu) << " is not in the dictionary" << endl;
+                        getline(arx2, lineOfArxiu);
+                        tpuntual = clock() - tpuntual;
+                        ttotal += tpuntual;
+                }
+                resHTT << "la media de htt de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+        }
+    arx2.close();
+    resHTT << endl;
+    resHTT.close();
 }
 
 void findBS(binarySearch* bs){
@@ -128,12 +201,19 @@ int main(){
 	bloomFilter bf = bloomFilter(nElemDic*10, nHashes);
 	binarySearch bs = binarySearch(nElemDic);
 	hashTable hs = hashTable(nElemDic);
+        hashttv2 httv2 = hashttv2(nElemDic);
+        addingElements(&bf, &bs, &hs,&httv2);
+        if(nElemDic <= 12000) {
+            hashTableTable htt = hashTableTable(nElemDic);
+            addingElementshtt(&htt);
+            findHTT(&htt);
 
-	addingElements(&bf, &bs, &hs);
+        }
 
-	findBF(&bf);
-	findHT(&hs);
-	findBS(&bs);
+        findBF(&bf);
+        findHT(&hs);
+        findHTTV2(&httv2);
+        findBS(&bs);
 }
 
 
