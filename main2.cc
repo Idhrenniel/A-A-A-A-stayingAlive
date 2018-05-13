@@ -33,7 +33,6 @@ void init(){
 
 void addingElements(bloomFilter* bf, binarySearch* bs, hashTable* hs,hashttv2* httv2){
 	//ADDING ELEMENTS
-	resAdd.open("./results/resultsOfAddingElements.txt");
 	arx1.open("arxiu1.txt");
 	if(arx1.is_open()){
 		string lineOfArxiu; int index = 0;
@@ -53,12 +52,10 @@ void addingElements(bloomFilter* bf, binarySearch* bs, hashTable* hs,hashttv2* h
                 resAdd << "la media de bf de añadir es " << tbf/nElemDic << " clicks y "<< (((float)tbf)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
 	}
 	arx1.close();
-	resAdd.close();
 }
 
 void addingElementshtt(hashTableTable* htt){
         //ADDING ELEMENTS
-        resAdd.open("./results/resultsOfAddingElements.txt");
         arx1.open("arxiu1.txt");
         if(arx1.is_open()){
                 string lineOfArxiu; int index = 0;
@@ -70,8 +67,6 @@ void addingElementshtt(hashTableTable* htt){
                 }
                 resAdd << "la media de htt de añadir es " << thtt/nElemDic << " clicks y "<< (((float)thtt)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
         }
-        arx1.close();
-        resAdd.close();
 }
 
 void findBF(bloomFilter* bf){
@@ -202,6 +197,7 @@ int main(){
 	binarySearch bs = binarySearch(nElemDic);
 	hashTable hs = hashTable(nElemDic);
         hashttv2 httv2 = hashttv2(nElemDic);
+        resAdd.open("./results/resultsOfAddingElements.txt");
         addingElements(&bf, &bs, &hs,&httv2);
         if(nElemDic <= 12000) {
             hashTableTable htt = hashTableTable(nElemDic);
@@ -209,6 +205,7 @@ int main(){
             findHTT(&htt);
 
         }
+        resAdd.close();
 
         findBF(&bf);
         findHT(&hs);
