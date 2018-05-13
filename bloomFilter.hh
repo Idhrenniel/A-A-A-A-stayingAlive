@@ -19,7 +19,7 @@ class bloomFilter {
 	public:
 		bloomFilter(int size, int nHashes);
 
-                clock_t addElement(int elem);
+        clock_t addElement(int elem);
 		bool findElement(int elem);
 		void output();
 };

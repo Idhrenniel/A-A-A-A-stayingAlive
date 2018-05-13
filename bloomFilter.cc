@@ -26,7 +26,7 @@ bloomFilter::bloomFilter(int size, int nHashes){
 }
 
 int parsingHashFunction(int elem, int prime, int size){
-	return ((((elem*elem)+1) % prime) % size);
+	return ((elem % prime) % size);
 }
 
 clock_t bloomFilter::addElement(int elem){
