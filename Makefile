@@ -5,7 +5,7 @@ all: prog clean
 prog: main2.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
 	g++ -std=c++11 -o prog main2.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
 
-main.o: main2.cc
+main2.o: main2.cc
 	g++ -std=c++11 -c main2.cc
 
 bloomFilter.o: bloomFilter.cc
