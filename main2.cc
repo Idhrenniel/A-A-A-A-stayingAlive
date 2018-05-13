@@ -45,11 +45,11 @@ void addingElements(bloomFilter* bf, binarySearch* bs, hashTable* hs,hashttv2* h
 			getline(arx1, lineOfArxiu);
 			++index;
 		}
-                resAdd << "la media de ht de añadir es " << tht/nElemDic << " clicks y "<< (((float)tht)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de ht de añadir es " << tht/nElemDic << " clicks y "<< ((((float)tht)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
 
-                resAdd << "la media de httv2 de añadir es " << thttv2/nElemDic << " clicks y "<< (((float)thttv2)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de httv2 de añadir es " << thttv2/nElemDic << " clicks y "<< ((((float)thttv2)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
 
-                resAdd << "la media de bf de añadir es " << tbf/nElemDic << " clicks y "<< (((float)tbf)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de bf de añadir es " << tbf/nElemDic << " clicks y "<< ((((float)tbf)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
 	}
 	arx1.close();
 }
@@ -65,8 +65,9 @@ void addingElementshtt(hashTableTable* htt){
                         getline(arx1, lineOfArxiu);
                         ++index;
                 }
-                resAdd << "la media de htt de añadir es " << thtt/nElemDic << " clicks y "<< (((float)thtt)/CLOCKS_PER_SEC)/nElemDic<< " segundos." << endl;
+                resAdd << "la media de htt de añadir es " << thtt/nElemDic << " clicks y "<< ((((float)thtt)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
         }
+        arx1.close();
 }
 
 void findBF(bloomFilter* bf){
@@ -87,7 +88,7 @@ void findBF(bloomFilter* bf){
                         tpuntual = clock() - tpuntual;
                         ttotal += tpuntual;
 		}
-        resBF << "la media de bf de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+        resBF << "la media de bf de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
 	}
 	arx2.close();
     resBF << endl;
@@ -112,7 +113,7 @@ void findHT(hashTable* hs){
                         tpuntual = clock() - tpuntual;
                         ttotal += tpuntual;
 		}
-                resHT << "la media de hs de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+                resHT << "la media de hs de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
 	}
     arx2.close();
     resHT << endl;
@@ -136,7 +137,7 @@ void findHTTV2(hashttv2* httv2){
                         tpuntual = clock() - tpuntual;
                         ttotal += tpuntual;
                 }
-                resHTTV2 << "la media de httv2 de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+                resHTTV2 << "la media de httv2 de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
         }
     arx2.close();
     resHTTV2 << endl;
@@ -160,7 +161,7 @@ void findHTT(hashTableTable* htt){
                         tpuntual = clock() - tpuntual;
                         ttotal += tpuntual;
                 }
-                resHTT << "la media de htt de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+                resHTT << "la media de htt de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
         }
     arx2.close();
     resHTT << endl;
@@ -184,7 +185,7 @@ void findBS(binarySearch* bs){
                         tpuntual = clock() - tpuntual;
                         ttotal += tpuntual;
 		}
-                resBS << "la media de bs de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*100<< " milisegundos." << endl;
+                resBS << "la media de bs de buscar es " << ttotal/nElemDic << " clicks y "<< ((((float)ttotal)/CLOCKS_PER_SEC)/nElemDic)*1000<< " milisegundos." << endl;
 	}
     arx2.close();
     resBS.close();

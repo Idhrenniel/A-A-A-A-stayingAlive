@@ -1,0 +1,4 @@
+la media de ht de añadir es 1 clicks y 0.001138 milisegundos.
+la media de httv2 de añadir es 0 clicks y 0 milisegundos.
+la media de bf de añadir es 0 clicks y 0.0007916 milisegundos.
+la media de htt de añadir es 2 clicks y 0.0020244 milisegundos.
