@@ -13,16 +13,14 @@ long hashTable::formkey (int elem){
     double n, ir = 1+pow(5,0.5)/2;
     ir = ir*elem;
     double fractir = std::modf(ir,&n);
-    for(int i=0;i<8;i++){
-      fractir*=10;
-    }
-    return int(fractir);
+
+    return int(size*fractir);
 }
 
 clock_t hashTable::addElement(long key, int elem){
     clock_t t;
     t = clock();
-    int hash = formkey(key)%size;
+    int hash = formkey(key);
     while(table[hash].first != -1 && table[hash].first != key){
             hash = (hash+1) % size;
     }
@@ -35,7 +33,7 @@ clock_t hashTable::addElement(long key, int elem){
 }
 
 int hashTable::findElement(int key){
-    int hash = formkey(key)%size;
+    int hash = formkey(key);
     for(int x=0;x<table.size();x++){
         if(table[hash].first != -1 && table[hash].first == key){
                 return table[hash].second;

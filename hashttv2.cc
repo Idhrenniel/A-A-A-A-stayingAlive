@@ -32,10 +32,7 @@ long hashttv2::formkey (int elem){
     double n, ir = 1+pow(5,0.5)/2;
     ir = ir*elem;
     double fractir = std::modf(ir,&n);
-    for(int i=0;i<8;i++){
-      fractir*=10;
-    }
-    return int(fractir);
+    return int(size*fractir);
 }
 
 long hashttv2::formkey2(int elem){
@@ -46,7 +43,7 @@ long hashttv2::formkey2(int elem){
 clock_t hashttv2::addElement(long key,long key2, int elem){
     clock_t t;
     t = clock();
-    int hash = formkey(key)%size;
+    int hash = formkey(key);
     int hash2 = 0;
     if(table[hash].first != -1){
             hash2 = formkey2(key2)%size;
@@ -66,7 +63,7 @@ clock_t hashttv2::addElement(long key,long key2, int elem){
 }
 
 int hashttv2::findElement(long key,long key2){
-    int hash = formkey(key)%size;
+    int hash = formkey(key);
     int hash2 = formkey2(key2)%size;
 
         if(table[hash].first != -1 && table[hash].first == key){

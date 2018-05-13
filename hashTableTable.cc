@@ -10,7 +10,6 @@ bool Prime(int n){
 int takePrime(int size){
         int i;
         for(i = size; !Prime(i);i++){
-            std::cout << "no es primo" << std::endl;
         }
         return i;
 }
@@ -29,10 +28,7 @@ long hashTableTable::formkey (int elem){
     double n, ir = 1+pow(5,0.5)/2;
     ir = ir*elem;
     double fractir = std::modf(ir,&n);
-    for(int i=0;i<8;i++){
-      fractir*=10;
-    }
-    return int(fractir);
+    return int(size*fractir);
 }
 
 long hashTableTable::formkey2(int elem){
@@ -43,7 +39,7 @@ long hashTableTable::formkey2(int elem){
 clock_t hashTableTable::addElement(long key,long key2, int elem){
     clock_t t;
     t = clock();
-    int hash = formkey(key)%size;
+    int hash = formkey(key);
     int hash2 = 0;
     if(table[hash][hash2].first != -1){
             hash2 = formkey2(key2)%size;
@@ -61,7 +57,7 @@ clock_t hashTableTable::addElement(long key,long key2, int elem){
 }
 
 int hashTableTable::findElement(long key,long key2){
-    int hash = formkey(key)%size;
+    int hash = formkey(key);
     int hash2 = formkey2(key2)%size;
     for(int x=0;x<table[0].size();x++){
         if(table[hash][hash2].first != -1 && table[hash][hash2].first == key){
