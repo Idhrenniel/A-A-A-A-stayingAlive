@@ -1,2 +1,2 @@
 # A-A-A-A-stayingAlive
-huna praktcca dhalgorihmia xddd
+Practica Miguel Angel Muñoz y Sara Izquierdo.

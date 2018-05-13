@@ -1,2 +1,0 @@
-la media de hs de añadir es 0 clicks y 9.624e-07 segundos.
-la media de bf de añadir es 0 clicks y 5.176e-07 segundos.
