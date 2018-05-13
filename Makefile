@@ -1,6 +1,6 @@
 makefile: all
 
-all: prog clean
+all: prog clean result
 
 prog: main2.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
 	g++ -std=c++11 -o prog main2.o bloomFilter.o binarySearch.o hashTable.o hashTableTable.o hashttv2.o
@@ -25,6 +25,9 @@ hashttv2.o: hashttv2.cc
 
 clean:
 	rm *.o
+
+result:
+	mkdir results
 
 ultraclean:
 	rm *.o *.txt prog
